@@ -1,0 +1,17 @@
+{
+  "name": "impostor-game",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Juego web multijugador de Impostor con salas en tiempo real",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

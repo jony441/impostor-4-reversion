@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impostor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar modo de color">🌙 MODO NOCHE</button>
+<main class="container">
+
+  <section id="home" class="screen">
+    <div class="logo">🕵️</div>
+    <h1>IMPOSTOR</h1>
+    <p class="subtitle">Una palabra. Un impostor. Descubrilo.</p>
+
+    <input id="name" maxlength="20" placeholder="Tu nombre">
+
+    <div class="category-box">
+      <div class="category-title">CATEGORÍA</div>
+      <div id="categoryGrid" class="category-grid">
+        <button type="button" class="category-option selected" data-category="animales">🐾 Animales</button>
+        <button type="button" class="category-option" data-category="paises">🌎 Países</button>
+        <button type="button" class="category-option" data-category="objetos">📦 Objetos</button>
+        <button type="button" class="category-option" data-category="comida">🍕 Comida</button>
+        <button type="button" class="category-option" data-category="deportes">⚽ Deportes</button>
+        <button type="button" class="category-option" data-category="profesiones">👷 Profesiones</button>
+        <button type="button" class="category-option" data-category="lugares">📍 Lugares</button>
+        <button type="button" class="category-option" data-category="videojuegos">🎮 Videojuegos</button>
+        <button type="button" class="category-option" data-category="personalizada">✏️ Personalizada</button>
+      </div>
+
+      <div id="customCategoryBox" class="custom-category hidden">
+        <div class="custom-help">Escribí una palabra por línea. Se usarán para esta partida.</div>
+        <textarea id="customWords" rows="7" placeholder="Dinosaurio&#10;Dragón&#10;Pizza&#10;Avión"></textarea>
+        <div id="customWordCount" class="word-count">0 palabras</div>
+      </div>
+    </div>
+
+    <button id="create">CREAR PARTIDA</button>
+
+    <div class="separator">O</div>
+
+    <input id="code" maxlength="5" placeholder="CÓDIGO DE SALA">
+    <button id="join" class="dark-btn">UNIRSE</button>
+
+  </section>
+
+  <section id="room" class="screen hidden">
+    <div class="top-line">
+      <span>SALA</span>
+      <strong id="roomCode"></strong>
+    </div>
+
+    <h2 id="phaseText">Esperando jugadores...</h2>
+    <div id="roomCategory" class="room-category"></div>
+
+    <div id="players" class="players"></div>
+
+    <div id="turnInfo" class="turn-info hidden"></div>
+    <div id="timer" class="timer hidden">10</div>
+
+    <button id="start">🎮 INICIAR PARTIDA</button>
+    <button id="reset" class="dark-btn hidden">🔄 NUEVA PARTIDA</button>
+    <button id="leaveRoom" class="leave-btn">🏠 VOLVER AL INICIO</button>
+  </section>
+
+  <!-- Pantalla de palabra + LISTO -->
+  <section id="readyScreen" class="screen game-screen hidden">
+    <div class="word-card">
+      <div class="small-label">TU INFORMACIÓN</div>
+      <div id="wordText" class="word-text">PALABRA</div>
+    </div>
+
+    <div id="readyTimer" class="ready-timer">—</div>
+    <div class="small-label">TIEMPO</div>
+
+    <button id="readyButton" class="ready-button">✓ LISTO</button>
+    <button class="leave-btn game-leave">🏠 VOLVER AL INICIO</button>
+
+    <div id="readyStatus" class="ready-status">Esperando que todos estén listos...</div>
+    <div id="readyPlayers" class="ready-grid"></div>
+  </section>
+
+  <!-- Pantalla de descripción -->
+  <section id="description" class="screen game-screen hidden">
+    <div class="word-card">
+      <div class="small-label">TU INFORMACIÓN</div>
+      <div id="descriptionWord" class="word-text">PALABRA</div>
+    </div>
+
+    <div id="descriptionTimer" class="timer">10</div>
+    <div id="descriptionTurnInfo" class="turn-info"></div>
+
+    <button class="leave-btn game-leave">🏠 VOLVER AL INICIO</button>
+
+    <div class="description-help">
+      Hablen por Discord. No hace falta escribir nada.
+    </div>
+  </section>
+
+  <section id="role" class="screen hidden">
+    <h2 id="roleTitle"></h2>
+    <div id="roleBox"></div>
+    <button id="hideRole" class="dark-btn">Ocultar</button>
+    <button class="leave-btn game-leave">🏠 VOLVER AL INICIO</button>
+  </section>
+
+  <section id="voting" class="screen hidden">
+    <h2>🗳️ VOTACIÓN</h2>
+    <p>Elegí quién creés que es el impostor.</p>
+    <div id="voteButtons" class="vote-grid"></div>
+    <h3>Votos realizados</h3>
+    <div id="voteList"></div>
+    <button class="leave-btn game-leave">🏠 VOLVER AL INICIO</button>
+  </section>
+
+  <section id="result" class="screen hidden">
+    <h2 id="resultTitle"></h2>
+    <div id="resultBox"></div>
+    <h3>Quién votó a quién</h3>
+    <div id="resultVotes"></div>
+    <button id="returnLobby" class="dark-btn hidden">↩ VOLVER A LA SALA</button>
+    <button class="leave-btn game-leave">🏠 VOLVER AL INICIO</button>
+  </section>
+
+
+  <p id="message"></p>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
